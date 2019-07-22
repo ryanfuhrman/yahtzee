@@ -26,11 +26,12 @@ class Game extends Component {
         smallStraight: undefined,
         largeStraight: undefined,
         yahtzee: undefined,
-        chance: undefined
-      }
+        chance: undefined,
+      },
     };
     this.roll = this.roll.bind(this);
     this.doScore = this.doScore.bind(this);
+    this.toggleLocked = this.toggleLocked.bind(this);
   }
 
   roll(evt) {
@@ -40,7 +41,7 @@ class Game extends Component {
         st.locked[i] ? d : Math.ceil(Math.random() * 6)
       ),
       locked: st.rollsLeft > 1 ? st.locked : Array(NUM_DICE).fill(true),
-      rollsLeft: st.rollsLeft - 1
+      rollsLeft: st.rollsLeft - 1,
     }));
   }
 
@@ -50,8 +51,8 @@ class Game extends Component {
       locked: [
         ...st.locked.slice(0, idx),
         !st.locked[idx],
-        ...st.locked.slice(idx + 1)
-      ]
+        ...st.locked.slice(idx + 1),
+      ],
     }));
   }
 
@@ -60,26 +61,26 @@ class Game extends Component {
     this.setState(st => ({
       scores: { ...st.scores, [rulename]: ruleFn(this.state.dice) },
       rollsLeft: NUM_ROLLS,
-      locked: Array(NUM_DICE).fill(false)
+      locked: Array(NUM_DICE).fill(false),
     }));
     this.roll();
   }
 
   render() {
     return (
-      <div className='Game'>
-        <header className='Game-header'>
-          <h1 className='App-title'>Yahtzee!</h1>
+      <div className="Game">
+        <header className="Game-header">
+          <h1 className="App-title">Yahtzee!</h1>
 
-          <section className='Game-dice-section'>
+          <section className="Game-dice-section">
             <Dice
               dice={this.state.dice}
               locked={this.state.locked}
               handleClick={this.toggleLocked}
             />
-            <div className='Game-button-wrapper'>
+            <div className="Game-button-wrapper">
               <button
-                className='Game-reroll'
+                className="Game-reroll"
                 disabled={this.state.locked.every(x => x)}
                 onClick={this.roll}
               >
