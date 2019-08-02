@@ -60,26 +60,9 @@ class SumDistro extends Rule {
 class FullHouse extends Rule {
   // TODO
   evalRoll = dice => {
-    const ordered = [...dice].sort();
-    let countOne = 0;
-    let countTwo = 0;
-    for (let i = 0; i < ordered.length; i++) {
-      if (ordered[i] === ordered[0]) {
-        countOne++;
-      }
-      if (ordered[i] === ordered[3]) {
-        countTwo++;
-      }
-    }
-
-    if (
-      (countOne === 3 && countTwo === 2) ||
-      (countOne === 2 && countTwo === 3)
-    ) {
-      return this.score;
-    }
-
-    return 0;
+    return this.freq(dice).includes(3) && this.freq(dice).includes(2)
+      ? this.score
+      : 0;
   };
 }
 
