@@ -2,34 +2,16 @@ import React, { Component } from "react";
 import "./RuleRow.css";
 
 class RuleRow extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      active: true,
-    };
-  }
-
-  disableRow = () => {
-    this.setState({
-      active: false,
-    });
-  };
-
-  onClick = () => {
-    this.disableRow();
-    this.props.doScore();
-  };
-
   render() {
+    const { name, score, doScore } = this.props;
+    const disabled = score !== undefined;
     return (
       <tr
-        className={`RuleRow ${
-          this.state.active ? "RuleRow-active" : "RuleRow-disabled"
-        }`}
-        onClick={this.onClick}
+        className={`RuleRow RuleRow-${disabled ? "disabled" : "active"}`}
+        onClick={disabled ? null : doScore}
       >
-        <td className="RuleRow-name">{this.props.name}</td>
-        <td className="RuleRow-score">{this.props.score}</td>
+        <td className="RuleRow-name">{name}</td>
+        <td className="RuleRow-score">{score}</td>
       </tr>
     );
   }
