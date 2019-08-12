@@ -2,7 +2,7 @@
 
 ![](img/appScreenshot.png)
 
-The To-do project as part of [Colt Steele's The Modern React Bootcamp](https://www.udemy.com/modern-react-bootcamp/) course.
+The yahtzee project as part of [Colt Steele's The Modern React Bootcamp](https://www.udemy.com/modern-react-bootcamp/) course.
 
 This project provides more practice working with reusable components, passing props, keys, etc.
 
